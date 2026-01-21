@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: var(--font-inter);
+    --font-heading: var(--font-figtree);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    /* Primary */
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    /* Accent */
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    /* Sutil - Borders & Subtle backgrounds */
+    --color-sutil: var(--sutil);
+
+    /* Mappings for backward compatibility or standard utility usage if needed */
+    --color-border: var(--sutil);
+    --color-input: var(--sutil);
+    /* Inputs use sutil color mostly */
+    --color-ring: var(--accent);
+    /* Focus ring uses accent */
+
+    /* Shadow Ordex - Neutral & Professional */
+    --shadow-ordex: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+
+    /* Brand Gradient */
+    --background-image-brand: var(--brand-gradient);
+}
+
+/* 
+  Filosofía del Diseño: Claridad, Contraste y Consistencia.
+*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    /* I. Paleta de Colores Indispensable */
+
+    /* PRIMARIO: #052941 
+     Fondos oscuros, botones principales (modo claro), texto de alto contraste. */
+    --primary: #052941;
+    --primary-foreground: #FFFFFF;
+
+    /* ACENTO: #DBF227 
+     Acciones clave (modo oscuro), estados activos, foco. */
+    --accent: #DBF227;
+    --accent-foreground: #052941;
+    /* Dark text on light accent */
+
+    /* FONDO (Claro): #F8F9FB */
+    --background: #F8F9FB;
+
+    /* TEXTO PRINCIPAL (Claro): #1b1e21 */
+    --foreground: #1b1e21;
+
+    /* CONTENIDO (Claro): #FFFFFF 
+     Superficie para tarjetas y modales en modo claro. */
+    --card: #FFFFFF;
+    --card-foreground: #1f2937;
+
+    /* SUTIL (Claro): #cedcf2 
+     Bordes, separadores y fondos de baja prominencia. */
+    --sutil: #cedcf2;
+
+    /* Derived for standard Tailwind */
+    --border: var(--sutil);
+    --input: var(--sutil);
+    --ring: var(--accent);
+    --brand-gradient: linear-gradient(to right, #052941, #2c8fd1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+.dark {
+    /* FONDO (Oscuro): #081e2e */
+    --background: #081e2e;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    /* TEXTO PRINCIPAL (Oscuro): #e5e7eb */
+    --foreground: #e5e7eb;
+
+    /* Superficie Cards (Oscuro): Primario (#052941) */
+    --card: #052941;
+    --card-foreground: #e5e7eb;
+
+    --primary: #DBF227;
+    /* Accent Green becomes the Primary Action color */
+    --primary-foreground: #1a360c;
+
+    /* ACENTO (Oscuro) - Updated */
+    --accent: #fcff8d;
+    --accent-foreground: #1a360c;
+
+    /* SUTIL (Oscuro): #1e3a52 */
+    --sutil: #1e3a52;
+
+    /* NOTE: .dark maps to html.dark via next-themes */
+    /* Note: In dark mode, Primary Action button uses Accent color */
+
+    --border: var(--sutil);
+    --input: var(--sutil);
+    --ring: var(--accent);
+    --brand-gradient: linear-gradient(to right, #DBF227, #ffffd9);
+    /* Force HMR: Dark Mode Colors Updated */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 
+  Specific Utility Classes for Components based on Design System 
+  (Optional helper classes, though can be composed with Tailwind utils directly)
+*/
+@utility card-ordex {
+    @apply bg-card text-card-foreground p-6 rounded-3xl shadow-ordex border border-sutil/20;
 }
