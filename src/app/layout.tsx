@@ -101,6 +101,15 @@ export default function RootLayout({
                   Clientes
                 </Link>
 
+  <Link
+                  href="/clients"
+                  className={getLinkClasses('/clients')}
+                  onClick={() => setIsSidebarOpen(false)}
+                >
+                  <Users className="h-5 w-5" />
+                  Test Call
+                </Link>
+
               </nav>
             </aside>
 
