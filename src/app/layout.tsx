@@ -41,7 +41,7 @@ export default function RootLayout({
   const getLinkClasses = (path: string) => {
     const isActive = path === '/' ? pathname === '/' : pathname?.startsWith(path);
     // Use semantic colors for active/inactive states
-    const baseClasses = "flex items-center gap-3.5 rounded-xl px-5 py-3.5 text-sm font-semibold transition-all duration-200";
+    const baseClasses = "flex items-center gap-3.5 rounded-xl px-3.5 py-3.5 text-sm font-semibold transition-all duration-200";
     const activeClasses = "bg-primary text-primary-foreground shadow-lg shadow-primary/10 hover:scale-[1.02] active:scale-95";
     const inactiveClasses = "text-muted-foreground hover:bg-secondary hover:text-primary hover:pl-6";
 
@@ -69,10 +69,10 @@ export default function RootLayout({
             {/* Sidebar */}
             {/* Sidebar */}
             <aside className={`
-              fixed inset-y-0 left-0 z-30 flex w-64 flex-col bg-card border-r border-border shadow-xl md:shadow-none transition-transform duration-300 ease-in-out md:static md:translate-x-0
+              fixed inset-y-0 left-0 z-30 flex w-56 flex-col bg-card border-r border-border shadow-xl md:shadow-none transition-transform duration-300 ease-in-out md:static md:translate-x-0
               ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
             `}>
-              <div className="relative flex h-20 items-center justify-center px-6 border-b border-border/40">
+              <div className="relative flex h-20 items-center justify-center px-3">
                 <div className="px-6 py-3">
                   <BrandLogo />
                 </div>
@@ -83,7 +83,7 @@ export default function RootLayout({
                   <X className="h-5 w-5" />
                 </button>
               </div>
-              <nav className="flex-1 overflow-y-auto px-6 py-6 space-y-3">
+              <nav className="flex-1 overflow-y-auto px-3 py-6 space-y-3">
                 <Link
                   href="/"
                   className={getLinkClasses('/')}
@@ -101,14 +101,6 @@ export default function RootLayout({
                   Clientes
                 </Link>
 
-  <Link
-                  href="/clients"
-                  className={getLinkClasses('/clients')}
-                  onClick={() => setIsSidebarOpen(false)}
-                >
-                  <Users className="h-5 w-5" />
-                  Test Call
-                </Link>
 
               </nav>
             </aside>

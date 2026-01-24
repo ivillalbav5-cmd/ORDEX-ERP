@@ -55,8 +55,8 @@ export function Navbar({ onMenuClick }: NavbarProps) {
                     <div className="h-8 w-[1px] bg-border/60 hidden sm:block"></div>
 
                     {/* Profile Dropdown */}
-                    <button className="flex items-center gap-3 pl-1 pr-2 py-1 rounded-full hover:bg-primary/10 border border-transparent transition-all duration-200 group">
-                        <div className="h-9 w-9 rounded-full bg-sutil flex items-center justify-center text-primary font-bold text-xs group-hover:scale-105 transition-transform duration-300">
+                    <button className="flex items-center gap-3 pl-1 pr-2 py-1 rounded-2xl hover:bg-primary/10 border border-transparent transition-all duration-200 group">
+                        <div className="h-9 w-9 rounded-2xl bg-sutil flex items-center justify-center text-primary font-bold text-xs group-hover:scale-105 transition-transform duration-300">
                             AU
                         </div>
                         <div className="hidden md:flex flex-col items-start pr-2">

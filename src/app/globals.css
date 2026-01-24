@@ -120,7 +120,17 @@ body {
 /* 
   Specific Utility Classes for Components based on Design System 
   (Optional helper classes, though can be composed with Tailwind utils directly)
-*/
+ */
 @utility card-ordex {
     @apply bg-card text-card-foreground p-6 rounded-3xl shadow-ordex border border-sutil/20;
+}
+
+/* Base Styles */
+@layer base {
+
+    button,
+    [role="button"],
+    a {
+        cursor: pointer;
+    }
 }
