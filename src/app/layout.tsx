@@ -23,7 +23,7 @@ export default function RootLayout({
             <body className={`${inter.variable} ${outfit.variable} font-sans antialiased text-inter`}>
                 <ThemeProvider
                     attribute="class"
-                    defaultTheme="dark"
+                    defaultTheme="light"
                     enableSystem
                     disableTransitionOnChange
                 >
