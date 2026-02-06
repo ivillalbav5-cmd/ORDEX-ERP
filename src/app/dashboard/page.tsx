@@ -36,7 +36,7 @@ export default function DashboardPage() {
                             <Calendar className="w-4 h-4 text-brand" />
                             <span className="text-xs font-bold uppercase tracking-widest text-foreground/70">Hoy: 06 FEB 2026</span>
                         </div>
-                        <Button variant="brand" className="gap-2 px-6">
+                        <Button variant="primary" className="gap-2 px-6">
                             <PlusIcon className="w-4 h-4" />
                             GENERAR REPORTE
                         </Button>
