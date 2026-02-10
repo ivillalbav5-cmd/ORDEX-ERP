@@ -9,14 +9,12 @@ import {
     Settings,
     MessageSquare,
     Plus,
-    Calendar,
-    ChevronRight,
-    ChevronDown,
-    FileText,
-    FileSpreadsheet
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
+import { DatePickerWithRange } from "@/components/ui/date-range-picker";
+import { addDays } from "date-fns";
+import { DateRange } from "react-day-picker";
 
 const NAV_ITEMS = [
     { label: "Resumen", href: "/clientes/resumen", icon: LayoutDashboard },
@@ -33,7 +31,10 @@ interface ClientsHeaderProps {
 
 export function ClientsHeader({ onExportPDF, onExportExcel, hideDateRange = false }: ClientsHeaderProps) {
     const pathname = usePathname();
-    const [exportMenuOpen, setExportMenuOpen] = useState(false);
+    const [date, setDate] = React.useState<DateRange | undefined>({
+        from: new Date(2024, 0, 20),
+        to: addDays(new Date(2024, 0, 20), 20),
+    });
 
     return (
         <div className="flex items-center justify-between h-[58px]">
@@ -65,12 +66,7 @@ export function ClientsHeader({ onExportPDF, onExportExcel, hideDateRange = fals
             {/* Right: Date Filter + Primary CTA */}
             <div className="flex items-center gap-3 h-full">
                 {!hideDateRange && (
-                    <div className="flex items-center gap-2 px-5 h-[58px] bg-white dark:bg-surface border border-border rounded-2xl text-xs font-medium text-muted-foreground cursor-pointer hover:bg-muted transition-colors">
-                        <Calendar className="w-4 h-4 text-primary" />
-                        <span>ENERO 2024</span>
-                        <ChevronRight className="w-3 h-3 opacity-40" />
-                        <span>HOY</span>
-                    </div>
+                    <DatePickerWithRange date={date} setDate={setDate} />
                 )}
 
                 {/* Primary CTA - Height 58px, rounded-2xl (16px) */}

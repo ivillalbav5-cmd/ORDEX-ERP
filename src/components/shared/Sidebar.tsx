@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { ChevronDown, Layers, LucideIcon, LayoutDashboard, Users, Settings, Package, Menu } from "lucide-react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { ChevronDown, Layers, LucideIcon, LayoutDashboard, Users, Settings, Package, Menu, BarChart3, Tag, AlertCircle, Loader2, Table as TableIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 
@@ -28,16 +28,31 @@ export function SidebarItem({
     collapsed,
 }: SidebarItemProps) {
     const pathname = usePathname();
+    const searchParams = useSearchParams();
     const [isOpen, setIsOpen] = React.useState(false);
 
-    const isActive = href ? pathname === href : subItems?.some(item => pathname === item.href);
+    const isSubActiveCheck = (itemHref: string) => {
+        const [targetPath, targetQuery] = itemHref.split('?');
+        if (pathname !== targetPath) return false;
+
+        if (targetQuery) {
+            const params = new URLSearchParams(targetQuery);
+            const cat = params.get('cat');
+            if (cat && searchParams.get('cat') === cat) return true;
+        } else if (!searchParams.get('cat')) {
+            return true;
+        }
+        return false;
+    };
+
+    const isActive = href ? pathname === href : subItems?.some(item => isSubActiveCheck(item.href));
 
     // Auto-open if any sub-item is active
     React.useEffect(() => {
-        if (subItems?.some(item => pathname === item.href)) {
+        if (subItems?.some(item => isSubActiveCheck(item.href))) {
             setIsOpen(true);
         }
-    }, [pathname, subItems]);
+    }, [pathname, searchParams, subItems]);
 
     if (collapsed) {
         return (
@@ -99,7 +114,8 @@ export function SidebarItem({
             {isOpen && (
                 <div className="ml-4 pl-4 border-l border-border space-y-1">
                     {subItems.map((item) => {
-                        const isSubActive = pathname === item.href;
+                        const isSubActive = isSubActiveCheck(item.href);
+                        // Fallback for server-side or if window is not available, but since this is "use client" it should work for highlighting
                         return (
                             <Link key={item.href} href={item.href}>
                                 <div
@@ -142,7 +158,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
                         <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
                             <Layers className="w-4 h-4 text-accent-foreground" />
                         </div>
-                        <span className="text-lg font-bold text-foreground">ORDEX</span>
+                        <span className="text-lg font-bold text-foreground font-display">ORDEX</span>
                     </div>
                 )}
                 {collapsed && (
@@ -165,12 +181,6 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
             {/* Navigation */}
             <div className="flex-1 p-3 space-y-1 overflow-y-auto scrollbar-hide">
                 <SidebarItem
-                    label="Dashboard"
-                    icon={LayoutDashboard}
-                    href="/dashboard"
-                    collapsed={collapsed}
-                />
-                <SidebarItem
                     label="Clientes"
                     icon={Users}
                     collapsed={collapsed}
@@ -182,20 +192,21 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
                     ]}
                 />
                 <SidebarItem
-                    label="Productos"
-                    icon={Package}
+                    label="Design System"
+                    icon={Layers}
                     collapsed={collapsed}
                     subItems={[
-                        { label: "Inventario", href: "/productos/inventario" },
-                        { label: "Categorías", href: "/productos/categorias" },
+                        { label: "Basic Components", href: "/design-system?cat=Basic" },
+                        { label: "Form Elements", href: "/design-system?cat=Forms" },
+                        { label: "KPIs", href: "/design-system?cat=KPIs" },
+                        { label: "Charts", href: "/design-system?cat=Charts" },
+                        { label: "Navigation", href: "/design-system?cat=Navigation" },
+                        { label: "Feedback", href: "/design-system?cat=Feedback" },
+                        { label: "Table Suite", href: "/design-system?cat=TableSuite" },
+                        { label: "Chips & Badges", href: "/design-system?cat=ChipsBadges" },
                     ]}
                 />
-                <SidebarItem
-                    label="Configuración"
-                    icon={Settings}
-                    href="/configuracion"
-                    collapsed={collapsed}
-                />
+
             </div>
 
             {/* User Profile Footer */}

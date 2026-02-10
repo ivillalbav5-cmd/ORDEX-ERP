@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+const poppins = Poppins({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    variable: "--font-display",
+});
 
 export const metadata: Metadata = {
     title: "ORDEX - Design System",
@@ -20,7 +24,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={`${inter.variable} ${outfit.variable} font-sans antialiased text-inter`}>
+            <body className={`${inter.variable} ${poppins.variable} font-sans antialiased text-inter`}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="light"

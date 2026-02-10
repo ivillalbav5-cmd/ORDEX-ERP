@@ -6,11 +6,22 @@ import { Search, Bell, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+import { Input } from "@/components/ui/Input";
+
 export function Topbar() {
     const pathname = usePathname();
 
     // Dynamic breadcrumb based on current route
-    const getBreadcrumb = () => {
+    const getBreadcrumbData = () => {
         if (pathname.includes("/clientes")) {
             const subPath = pathname.split("/clientes/")[1];
             if (subPath) {
@@ -25,7 +36,7 @@ export function Topbar() {
         return { parent: "ORDEX", child: "DASHBOARD" };
     };
 
-    const breadcrumb = getBreadcrumb();
+    const data = getBreadcrumbData();
 
     return (
         <header className="sticky top-0 z-40 w-full h-16 bg-surface/80 backdrop-blur-md flex items-center border-b border-border transition-colors">
@@ -40,23 +51,29 @@ export function Topbar() {
                     <Search className="w-5 h-5" /> {/* Placeholder for mobile menu button if needed, but the user wants 100% width and breadcrumbs */}
                 </Button>
 
-                <nav className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                    <span>{breadcrumb.parent}</span>
-                    <span className="opacity-40">/</span>
-                    <span className="text-foreground">{breadcrumb.child}</span>
-                </nav>
+                <Breadcrumb>
+                    <BreadcrumbList className="text-[10px] sm:text-xs font-medium uppercase tracking-wide">
+                        <BreadcrumbItem>
+                            <BreadcrumbLink className="text-muted-foreground/60">{data.parent}</BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator className="opacity-40" />
+                        <BreadcrumbItem>
+                            <BreadcrumbPage className="text-foreground">{data.child}</BreadcrumbPage>
+                        </BreadcrumbItem>
+                    </BreadcrumbList>
+                </Breadcrumb>
             </div>
 
             {/* Center: Smart Search - Centered and constrained */}
             <div className="flex-1 flex justify-center px-4">
                 <div className="relative group w-full max-w-[520px] mx-auto">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
-                    <input
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors z-10" />
+                    <Input
                         type="text"
                         placeholder="Buscador inteligente..."
-                        className="w-full h-10 pl-11 pr-24 bg-muted border border-primary/10 rounded-xl text-sm font-medium text-foreground placeholder:text-muted-foreground focus:bg-surface focus:border-primary/20 focus:outline-none transition-all"
+                        className="w-full h-10 pl-11 pr-24 bg-muted border border-primary/10 rounded-xl text-sm font-medium text-foreground placeholder:text-muted-foreground focus:bg-surface focus:border-primary/20 focus:outline-none transition-all shadow-none"
                     />
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 px-2 py-1 bg-surface border border-border rounded-lg text-[10px] font-medium text-muted-foreground pointer-events-none">
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 px-2 py-1 bg-surface border border-border rounded-lg text-[10px] font-medium text-muted-foreground pointer-events-none z-10">
                         CTRL + K
                     </div>
                 </div>

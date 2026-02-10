@@ -29,3 +29,6 @@
 1. **Análisis de intención**
 2. **Optimización de flujo**
 3. **Generación de código modular**
+
+## [CONSTRAINTS]
+Keep the response under 100 tokens to avoid looping issues.

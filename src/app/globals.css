@@ -4,18 +4,54 @@
   /* Core Palette */
   --color-navy: #052940;
   --color-lime: #DBF227;
+  --color-brand: var(--brand);
+  --color-brand-accent: var(--brand-accent);
 
   /* Semantic Tokens (Theme-Aware) */
   --color-background: var(--background);
-  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-foreground: var(--foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
   --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Button State Tokens */
+  --color-btn-primary-hover: var(--btn-primary-hover);
+  --color-btn-secondary: var(--btn-secondary);
+  --color-btn-secondary-hover: var(--btn-secondary-hover);
+  --color-btn-outline-border: var(--btn-outline-border);
+
+  /* Input State Tokens */
+  --color-input-border: var(--input-border);
+  --color-input-error-bg: var(--input-error-bg);
+  --color-input-error-border: var(--input-error-border);
+  --color-input-success-bg: var(--input-success-bg);
+  --color-input-success-border: var(--input-success-border);
+
+  /* Icon Container Tokens */
+  --color-icon-container-bg: var(--icon-container-bg);
+  --color-icon-container-fg: var(--icon-container-fg);
 
   /* Sidebar Tokens */
   --color-sidebar: var(--sidebar);
@@ -23,14 +59,26 @@
   --color-sidebar-active: var(--sidebar-active);
   --color-sidebar-active-foreground: var(--sidebar-active-foreground);
 
-  /* Layout */
-  --radius-ordex: 16px;
-  --radius-card: 12px;
-  --spacing-card: 24px;
-  --spacing-section: 32px;
+  /* Layout & Geometry (Standardized Scale) */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-ordex: var(--radius-lg);
+
+  /* Spacing System */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-card: var(--spacing-lg);
+  --spacing-section: var(--spacing-xl);
 
   /* Typography */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter, 'Inter'), 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ===== LIGHT MODE ===== */
@@ -43,23 +91,59 @@
 :root {
   /* Surfaces */
   --background: #F8FAFC;
-  --surface: #FFFFFF;
   --foreground: #052940;
 
-  /* Primary CTA: Navy */
+  --card: #FFFFFF;
+  --card-foreground: #052940;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #052940;
+
+  /* Primary CTA: Navy (High Contrast) */
   --primary: #052940;
   --primary-foreground: #FFFFFF;
+  --primary-rgb: 5, 41, 64;
 
-  /* Accent: Lime */
-  --accent: #DBF227;
-  --accent-foreground: #052940;
+  /* Brand Tokens */
+  --brand: #052940;
+  --brand-accent: #052940;
+
+  --secondary: #CFDCE5;
+  --secondary-foreground: #052940;
+
+  /* Accent */
+  --accent: #052940;
+  --accent-foreground: #FFFFFF;
 
   /* Muted */
   --muted: #F1F5F9;
   --muted-foreground: #64748B;
 
-  /* Borders: Navy 10% */
+  --destructive: #EF4444;
+  --destructive-foreground: #F8FAFC;
+
+  /* Borders / Inputs */
   --border: rgba(5, 41, 64, 0.1);
+  --input: rgba(5, 41, 64, 0.1);
+  --ring: #052940;
+
+  --icon-container-bg: color-mix(in srgb, #052940, transparent 90%);
+  --icon-container-fg: #052940;
+
+  /* Button Refinements (Light) */
+  --btn-primary-hover: #3D5566;
+  --btn-secondary: #CFDCE5;
+  --btn-secondary-hover: #B8C8D4;
+  --btn-outline-border: #D1DDE6;
+
+  /* Input Refinements (Light) - WCAG 3:1 Border Contrast */
+  --input-border: #94A3B8;
+  --input-error-bg: #FFF5F5;
+  --input-error-border: #FF9C9C;
+  --input-success-bg: #F2FFF9;
+  --input-success-border: #7DE8B5;
+
+  --radius: var(--radius-lg);
 
   /* Sidebar */
   --sidebar: #FFFFFF;
@@ -72,23 +156,57 @@
 .dark {
   /* Surfaces */
   --background: #052940;
-  --surface: #0A3654;
   --foreground: #F8FAFC;
 
-  /* Primary CTA: Lime */
+  --card: #0A3654;
+  --card-foreground: #F8FAFC;
+
+  --popover: #0A3654;
+  --popover-foreground: #F8FAFC;
+
+  /* Primary CTA: Lime (Vibrant) */
   --primary: #DBF227;
   --primary-foreground: #052940;
+  --primary-rgb: 219, 242, 39;
 
-  /* Accent: Navy */
-  --accent: #052940;
-  --accent-foreground: #DBF227;
+  /* Brand Tokens */
+  --brand: #DBF227;
+  --brand-accent: #DBF227;
+
+  --secondary: #0A3654;
+  --secondary-foreground: #F8FAFC;
+
+  /* Accent: Lime */
+  --accent: #DBF227;
+  --accent-foreground: #052940;
 
   /* Muted */
   --muted: #0A3654;
   --muted-foreground: #94A3B8;
 
-  /* Borders: Lime 15% */
+  --destructive: #7F1D1D;
+  --destructive-foreground: #F8FAFC;
+
+  /* Borders / Inputs */
   --border: rgba(219, 242, 39, 0.15);
+  --input: rgba(219, 242, 39, 0.15);
+  --ring: #DBF227;
+
+  --icon-container-bg: color-mix(in srgb, #DBF227, transparent 90%);
+  --icon-container-fg: #DBF227;
+
+  /* Button Refinements (Dark) */
+  --btn-primary-hover: color-mix(in srgb, #DBF227, #000 15%);
+  --btn-secondary: #0A3654;
+  --btn-secondary-hover: #0D456B;
+  --btn-outline-border: rgba(219, 242, 39, 0.3);
+
+  /* Input Refinements (Dark) */
+  --input-border: rgba(219, 242, 39, 0.2);
+  --input-error-bg: rgba(127, 29, 29, 0.1);
+  --input-error-border: #EF4444;
+  --input-success-bg: rgba(16, 185, 129, 0.1);
+  --input-success-border: #10B981;
 
   /* Sidebar */
   --sidebar: #052940;
@@ -112,11 +230,13 @@
   h1,
   h2 {
     @apply text-2xl md:text-3xl font-bold tracking-tight;
+    font-family: var(--font-display);
   }
 
   h3,
   h4 {
     @apply text-lg md:text-xl font-semibold;
+    font-family: var(--font-display);
   }
 
   /* Scrollbar */
