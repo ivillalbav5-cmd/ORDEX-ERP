@@ -196,7 +196,7 @@ export function AdvancedFilterModal({ isOpen, onClose }: AdvancedFilterModalProp
                         <Button variant="outline" onClick={onClose}>
                             Cancelar
                         </Button>
-                        <Button variant="primary" onClick={onClose}>
+                        <Button variant="default" onClick={onClose}>
                             Aplicar Filtros
                         </Button>
                     </div>

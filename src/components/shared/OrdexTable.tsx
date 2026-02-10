@@ -50,7 +50,7 @@ export interface OrdexTableProps<T> {
     onSort?: (key: keyof T) => void;
 
     // Footer
-    totals?: { label: string; value: string; className?: string }[];
+    totals?: Record<string, string | { value: string; className?: string }>;
 
     // Pagination (existing)
     onFilterClick?: () => void;
@@ -89,7 +89,7 @@ export function OrdexTable<T extends { id: string | number }>({
     resultsCount = 0,
     totalResults = 0,
     className,
-}: OrdexTableProps<T> & { totals?: Record<string, string | { value: string; className?: string }> }) {
+}: OrdexTableProps<T>) {
     return (
         <Card className={cn("rounded-[16px] border-border shadow-none overflow-hidden bg-card", className)}>
             {/* Actionable Header */}

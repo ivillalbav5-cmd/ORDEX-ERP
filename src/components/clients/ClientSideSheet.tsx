@@ -149,7 +149,7 @@ export function ClientSideSheet({ client, isOpen, onClose }: ClientSideSheetProp
                             <Edit className="w-4 h-4" />
                             Editar
                         </Button>
-                        <Button variant="primary" className="gap-2">
+                        <Button variant="default" className="gap-2">
                             <ExternalLink className="w-4 h-4" />
                             Ver Ficha
                         </Button>

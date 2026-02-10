@@ -10,11 +10,11 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 
-interface DialogButtonProps extends ButtonProps {
+interface DialogButtonProps extends Omit<ButtonProps, "children"> {
     dialogTitle: string
     dialogDescription?: string
     children?: React.ReactNode // Content of the dialog
-    triggerLabel?: string // Label for the button if not using children for trigger
+    triggerLabel?: React.ReactNode // Label for the button
     onOpenChange?: (open: boolean) => void
 }
 
@@ -43,7 +43,7 @@ export function DialogButton({
     return (
         <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>
-                <Button {...props}>{triggerLabel || props.children}</Button>
+                <Button {...props}>{triggerLabel}</Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>

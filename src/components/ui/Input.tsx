@@ -75,7 +75,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                                     ? "placeholder:text-[#052940]/50 dark:placeholder:text-muted-foreground placeholder:font-normal"
                                     : "placeholder:text-transparent"
                             )}
-                            placeholder={isSearch ? (props.placeholder || placeholder) : placeholder}
+                            placeholder={placeholder}
                             ref={ref}
                             readOnly={isReadOnly}
                             disabled={isLoading}

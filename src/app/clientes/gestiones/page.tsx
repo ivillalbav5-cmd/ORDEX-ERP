@@ -147,7 +147,7 @@ export default function GestionesPage() {
                         </Button>
 
                         {/* CTA */}
-                        <Button variant="primary" className="gap-2 h-10">
+                        <Button variant="default" className="gap-2 h-10">
                             <Plus className="w-4 h-4" />
                             Nueva Gestión
                         </Button>
@@ -384,7 +384,7 @@ export default function GestionesPage() {
 
                             {/* Footer */}
                             <div className="p-6 border-t border-border bg-muted">
-                                <Button variant="primary" className="w-full gap-2">
+                                <Button variant="default" className="w-full gap-2">
                                     Ver Ficha Completa del Cliente
                                 </Button>
                             </div>

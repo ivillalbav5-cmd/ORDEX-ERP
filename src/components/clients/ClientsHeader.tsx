@@ -70,7 +70,7 @@ export function ClientsHeader({ onExportPDF, onExportExcel, hideDateRange = fals
                 )}
 
                 {/* Primary CTA - Height 58px, rounded-2xl (16px) */}
-                <Button variant="primary" className="h-[58px] px-6 gap-2 rounded-2xl">
+                <Button variant="default" className="h-[58px] px-6 gap-2 rounded-2xl">
                     <Plus className="w-4 h-4" />
                     <span>Nuevo Cliente</span>
                 </Button>

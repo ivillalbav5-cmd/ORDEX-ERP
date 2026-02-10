@@ -15,10 +15,12 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         <div className="min-h-screen bg-background text-foreground flex transition-colors">
             {/* Desktop Sidebar */}
             <div className="hidden lg:block">
-                <Sidebar
-                    collapsed={sidebarCollapsed}
-                    onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
-                />
+                <React.Suspense fallback={null}>
+                    <Sidebar
+                        collapsed={sidebarCollapsed}
+                        onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+                    />
+                </React.Suspense>
             </div>
 
             {/* Mobile Drawer (Overlay) */}
@@ -34,10 +36,12 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                 "fixed inset-y-0 left-0 w-72 z-[70] transition-transform duration-300 lg:hidden",
                 mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
             )}>
-                <Sidebar
-                    collapsed={false}
-                    onToggle={() => setMobileMenuOpen(false)}
-                />
+                <React.Suspense fallback={null}>
+                    <Sidebar
+                        collapsed={false}
+                        onToggle={() => setMobileMenuOpen(false)}
+                    />
+                </React.Suspense>
             </div>
 
             {/* Main Content Area */}
